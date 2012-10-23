@@ -16,6 +16,15 @@ import me.prettyprint.hector.api.query.SliceQuery;
 
 import com.apigee.cassandra.tutorial.CookbookBase;
 
+/**
+ * Prints the first couple of rows of the sample geo-ip data.
+ * 
+ * This demonstrates ColumnFamilyIteration and querying by composites with such. 
+ *  
+ * mvn -e exec:java -Dexec.mainClass="com.apigee.cassandra.tutorial.geoip.GeoIpCsvLoader"
+ * 
+ * @author zznate 
+ */
 public class GeoIpQuery extends CookbookBase {
 	
 	private Logger logger = LoggerFactory.getLogger(GeoIpQuery.class);
