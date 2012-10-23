@@ -30,8 +30,9 @@ public class GeoIpQuery extends CookbookBase {
 	private static Logger logger = LoggerFactory.getLogger(GeoIpQuery.class);
 	
 	// this is the first component of the Composite for which we will look
-	  //private static long startArg = 16859136;
-		private static long startArg = 7602176;
+	  //private static long startArg =  16859136;
+		//private static long startArg = 7602176;
+		private static long startArg = 3653524560L;
 	    private static long lookupNumber = 3653524560L; // Should return Austria AT
 	    private static long startTime = 0;
 	    private static long endTime = 0;

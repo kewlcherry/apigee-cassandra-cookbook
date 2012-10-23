@@ -33,7 +33,7 @@ public class CookbookBase {
 	    // see also me.prettyprint.tutorial.model.ConfigurableConsistencyLevelPolicy[Test] for details
 	    try {
 	      tutorialCluster = HFactory.getOrCreateCluster(properties.getProperty("cluster.name", "TutorialCluster"),
-	              properties.getProperty("cluster.hosts", "10.190.10.1:9160"));
+	              properties.getProperty("cluster.hosts", "localhost:9160"));
 	      schemaUtils = new SchemaUtils(tutorialCluster);
 	      schemaUtils.maybeCreateKeyspace();
 	      ConfigurableConsistencyLevel ccl = new ConfigurableConsistencyLevel();
