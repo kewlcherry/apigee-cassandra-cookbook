@@ -58,7 +58,9 @@ public class GeoIpCsvLoader extends CookbookBase {
 	    long startTime = System.currentTimeMillis();
 	    init(true);
 	    maybeCreateSchema();
-	    String fileLocation = properties.getProperty("composites.geodata.file.location","data/geodata.txt");
+	    //String fileLocation = properties.getProperty("composites.geodata.file.location","data/geodata.txt");
+	    String fileLocation = properties.getProperty("composites.geodata.file.location","data/GeoIPCountryWhois.csv");
+
 	    BufferedReader reader;
 	    exec = Executors.newFixedThreadPool(5);
 	    try {

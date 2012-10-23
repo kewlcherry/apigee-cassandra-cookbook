@@ -27,20 +27,23 @@ import com.apigee.cassandra.tutorial.CookbookBase;
  */
 public class GeoIpQuery extends CookbookBase {
 	
-	private Logger logger = LoggerFactory.getLogger(GeoIpQuery.class);
+	private static Logger logger = LoggerFactory.getLogger(GeoIpQuery.class);
 	
 	// this is the first component of the Composite for which we will look
-	  private static long startArg = 16859136;
-	  
+	  //private static long startArg = 16859136;
+		private static long startArg = 7602176;
+	    private static long lookupNumber = 3653524560L; // Should return Austria AT
+	    private static long startTime = 0;
+	    private static long endTime = 0;
 	  public static void main(String []args) {
 	    init(true);
 	    // TODO add maybeCreate() abstract class to tutorial schema
 	    GeoIpQuery compositeQuery = new GeoIpQuery();
-
+	    logger.info("Start time:"+(startTime = System.currentTimeMillis()));
 	    // Note the use of 'equal' and 'greater-than-equal' for the start and end.
 	    // this has to be the case when we want all 
 	    Composite start = compositeFrom(startArg, Composite.ComponentEquality.EQUAL);
-	    Composite end = compositeFrom(3233729536L, Composite.ComponentEquality.GREATER_THAN_EQUAL);
+	    Composite end = compositeFrom(lookupNumber, Composite.ComponentEquality.GREATER_THAN_EQUAL);
 
 	    compositeQuery.printColumnsFor(start,end);
 
@@ -57,16 +60,22 @@ public class GeoIpQuery extends CookbookBase {
 	    CompositeQueryIterator iter = new CompositeQueryIterator(GeoIpCsvLoader.COMPOSITE_KEY, start, end);
 	    logger.info("Printing all columns starting with {}", startArg);
 	    int count = 0;
+	    String lookupValue = null;
 	    for ( HColumn<Composite,Composite> column : iter ) {
-
+	    /**	
 	      logger.info("Country code: {}  Admin Code: {}   Timezone: {} ",
 	    		  new Object[]{
 	        column.getName().get(0,LongSerializer.get()),
 	        column.getName().get(1,LongSerializer.get()),	        
 	        column.getValue().get(0,StringSerializer.get())
 	      });
+	      */
+	      lookupValue = column.getValue().get(0,StringSerializer.get()); //last value will be the lookup value for given number
 	      count++;
 	    }
+	    
+	    logger.info("Value is :{}",lookupValue);
+	    logger.info("Total time:{}seconds",(System.currentTimeMillis()-startTime)/1000);
 	    logger.info("Found {} columns",count);
 	  }
 	    
